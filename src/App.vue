@@ -1,6 +1,5 @@
 <template>
-  <HelloWorld :counter="counter"/>
-  <button @click="counter++">Click</button>
+  <HelloWorld />
 </template>
 
 <script lang="ts">
@@ -13,8 +12,6 @@ export default defineComponent({
     HelloWorld
   },
   setup() {
-    const counter = ref(0);
-    return { counter };
   }
 })
 </script>

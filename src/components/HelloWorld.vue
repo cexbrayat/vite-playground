@@ -1,20 +1,24 @@
 <template>
-  <h1>{{ counter }}</h1>
+  <h1>{{ price }}</h1>
+  <ul>
+    <li v-for="(change, index) in history" :key="index">{{ change }}</li>
+  </ul>
 </template>
 
 <script lang="ts">
-import { defineComponent, toRefs, watchEffect } from 'vue'
+import { defineComponent, ref, watchEffect } from 'vue'
 
 export default defineComponent({
-  name: 'HelloWorld',
-  props: {
-    counter: Number
-  },
-  setup(props) {
-    const { counter } = toRefs(props);
+  name: 'User',
+  setup() {
+    const price = ref(10);
+
+    const history = ref<Array<string>>([]);
     watchEffect(() => {
-      console.log('The new counter value is: ' + counter.value)
-    })
+      history.value.push(`Price changed to ${price.value}`);
+    });
+
+    return { price, history };
   }
 })
 </script>
